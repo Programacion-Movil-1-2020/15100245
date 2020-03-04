@@ -1,1 +1,167 @@
+package modelo
+//Valeria Sanchez Paz  #15100245
+data class Auto(val Marca:String,val Modelo:String,val Transmision:String,val AC:Boolean,val ABS:Boolean,val airBag:Boolean,val touchS:Boolean,val controlElec:Boolean,val faros:Boolean,val piel:Boolean,val cargados:Boolean)
+val listaAutos:ArrayList<Auto> = ArrayList()
+fun main() {
+    //inicia y muestra el menu
+    print("1.-Ensamblar auto nuevo\n2.-Ver autos ensamblados\n3.-Salir\n\nElija una opcion:")
+    val respuesta: String? = readLine()
+    when (respuesta) {
+
+        "1" -> {
+            ensamblarAuto()
+            //al terminar reinicia el main para volver a mostrar el menu
+            main()
+        }
+
+        "2" -> {
+            verAutos()
+            //reinicia el main
+            main()
+        }
+        //no hace nada solo sale
+        "3" -> {
+        }
+        //si introduce otra cosa solo reinicia el main
+        else -> {
+            println("Elija una opcion valida")
+            main()
+        }
+
+    }
+}
+fun ensamblarAuto(){
+    var marca:String = ""
+    var modelo:String = ""
+    var transmision:String = ""
+    var ac = false
+    var frenosABS = false
+    var airBag = false
+    var touchS= false
+    var contolElec = false
+    var faros = false
+    var piel = false
+    var cargador = false
+
+
+    print("\nMarca del vehiculo:\n1.-Ford\n2.-Chevrolet\n3.-Dodge\n4.-KIAr\n\nElija una opcion:")
+    var respuesta: String? = readLine()
+    when (respuesta) {
+        "1" -> marca = "Ford"
+        "2" -> marca = "Chevrolet"
+        "3" -> marca = "Dodge"
+        "4" -> marca = "KIA"
+        else -> marca = "otro"
+    }
+    print("\nCapturar modelo:")
+    respuesta = readLine()
+    modelo = respuesta.toString()
+    print("\n\nCaracteristicas Principales\nTipo de transmision:\n1.-Manual\n2.-Automatica\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> transmision = "Manual"
+        "2" -> transmision = "Automatica"
+        else -> marca = "otro"
+    }
+    print("\nAire Acondicionado:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> ac = true
+        "2" -> ac = false
+        else -> ac = false
+    }
+    print("\nFrenos ABS:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> frenosABS = true
+        "2" -> frenosABS = false
+        else -> frenosABS = false
+    }
+    print("\nBolsa de Aire:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> airBag = true
+        "2" -> airBag = false
+        else -> airBag = false
+    }
+    print("\nPantalla Tactil:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> touchS = true
+        "2" -> touchS = false
+        else -> touchS = false
+    }
+    print("\nControles Electricos:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> contolElec = true
+        "2" -> contolElec = false
+        else -> contolElec = false
+    }
+    print("\n\nCaracteristicas Especiales\nFaros de Niebla:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> faros = true
+        "2" -> faros = false
+        else -> faros = false
+    }
+    print("\nAsientos de Piel:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> piel = true
+        "2" -> piel = false
+        else -> piel = false
+    }
+    print("\nCargador Inalambrico:\n1.-Si\n2.-No\n" +
+            "\n" +
+            "Elija una opcion:")
+    respuesta  = readLine()
+    when (respuesta) {
+        "1" -> cargador = true
+        "2" -> cargador = false
+        else -> cargador = false
+    }
+
+    //Al salir del while se crea un objeto con los parametros recopilados
+    val automovil = Auto(marca,modelo,transmision,ac,frenosABS,airBag,touchS,contolElec,faros,piel,cargador)
+    //Se agrega el objeto al arreglo
+    listaAutos.add(automovil)
+    println("Se agrego un Auto Nuevo\n")
+}
+fun verAutos(){
+    //Comprobamos que no este vacia
+    if (!listaAutos.isEmpty())
+    {
+        //forEachIndexed para enumerar el index de cada auto creado y el parametro auto para traer los atributos de cada objeto
+        listaAutos.forEachIndexed { index, auto ->
+            print("\nAuto #${index + 1} \nMarca: ${auto.Marca}\nModelo: ${auto.Modelo}\n\nCaracteristicas Principales:\n-Transmision: ${auto.Transmision}\n-Aire Acondicionado:${auto.AC}\n" +
+                    "-Frenos ABS:${auto.ABS}\n" +
+                    "-Bolsa de Aire:${auto.airBag.toString()}\n" +
+                    "-Pantalla Tactil:${auto.touchS.toString()}\n" +
+                    "-Controles Electricos:${auto.controlElec.toString()}\n\nCaracteristicas Especiales:\n" +
+                    "Faros de Niebla:${auto.faros.toString()}\n" +
+                    "Asientos de Piel:${auto.piel.toString()}\n" +
+                    "Cargador inalambrico:${auto.cargados.toString()}\n\n")
+        }
+        print("Total de autos ensamblados: ${listaAutos.size}\n\n")
+    }else{
+        println("Lista vacia\n")
+    }
+}
 
